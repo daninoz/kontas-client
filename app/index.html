@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <title>Kontas</title>
+</head>
+<body ng-app="kontas" layout="row">
+  <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Kontas</h1>
+    </md-toolbar>
+    <md-list>
+      <md-list-item>
+        <a href="/#/accounts">Accounts</a>
+        <md-divider></md-divider>
+      </md-list-item>
+      <md-list-item>
+        <a href="/#/currencies">Currencies</a>
+        <md-divider></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="container" layout="column" flex>
+    <md-content id="content" class="layout-content" md-whiteframe="z1" flex ng-view>
+
+    </md-content>
+  </div>
+  <script src="bundle.js"></script>
+</body>
+</html>

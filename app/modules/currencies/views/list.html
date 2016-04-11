@@ -1,0 +1,16 @@
+<div layout="row" flex layout-align="center center">
+  <h1 class="md-title">Currencies</h1>
+  <span flex></span>
+  <md-button class="md-fab md-mini" aria-label="Add" ng-click="vm.create($event)">
+    <md-icon md-font-icon="fa-plus" class="fa" alt="add"></md-icon>
+  </md-button>
+</div>
+<md-list ng-cloak>
+  <md-list-item class="secondary-button-padding" ng-repeat="currency in vm.currencies">
+    <p>{{ currency.name }}</p>
+    <p>{{ currency.exchange_rate }}</p>
+    <md-button class="md-raised md-primary md-warn" ng-click="vm.remove(currency.id)">Delete</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.edit(currency.id)">Edit</md-button>
+    <md-divider></md-divider>
+  </md-list-item>
+</md-list>
