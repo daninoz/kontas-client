@@ -3,6 +3,7 @@ import ngRoute from 'angular-route';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
 import accountsModule from './modules/accounts';
+import categoriesModule from './modules/categories';
 import currenciesModule from './modules/currencies';
 import services from './services';
 import helpers from './helpers';
@@ -17,6 +18,7 @@ const app = angular.module('kontas', [
   'ngMessages',
   'kontas.accounts',
   'kontas.currencies',
+  'kontas.categories',
   'kontas.services',
   'kontas.helpers'
 ]);
@@ -30,5 +32,6 @@ function config($routeProvider, $locationProvider) {
 
 accountsModule(angular);
 currenciesModule(angular);
+categoriesModule(angular);
 services(angular);
 helpers(angular);

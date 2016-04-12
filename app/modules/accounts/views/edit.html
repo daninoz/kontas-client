@@ -13,9 +13,11 @@
     <div class="md-dialog-content">
       <md-input-container class="md-block">
         <label>Name</label>
-        <input required name="name" ng-model="vm.account.name" ng-change="vm.resetRemoteErrors(vm.accountForm.name)">
+        <input required name="name" ng-model="vm.account.name" ng-maxlength="100"
+            ng-change="vm.resetRemoteErrors(vm.accountForm.name)">
         <div ng-messages="vm.accountForm.name.$error">
           <div ng-message="required">This is required.</div>
+          <div ng-message="maxlength">The max length for this field is 100.</div>
           <div ng-message="duplicate">An account with this name already exists.</div>
         </div>
       </md-input-container>

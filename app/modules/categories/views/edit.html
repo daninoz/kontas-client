@@ -1,7 +1,7 @@
-<form class="ng-pristine ng-valid" name="vm.accountForm">
+<form class="ng-pristine ng-valid" name="vm.categoryForm">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Create</h2>
+      <h2>Edit</h2>
       <span flex="" class="flex"></span>
       <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.cancel()">
         <md-icon md-font-icon="fa-close" class="fa" alt="cancel"></md-icon>
@@ -13,12 +13,12 @@
     <div class="md-dialog-content">
       <md-input-container class="md-block">
         <label>Name</label>
-        <input required name="name" ng-model="vm.account.name" ng-maxlength="100"
-            ng-change="vm.resetRemoteErrors(vm.accountForm.name)">
-        <div ng-messages="vm.accountForm.name.$error">
+        <input required name="name" ng-model="vm.category.name" ng-maxlength="100"
+            ng-change="vm.resetRemoteErrors(vm.categoryForm.name)">
+        <div ng-messages="vm.categoryForm.name.$error">
           <div ng-message="required">This is required.</div>
           <div ng-message="maxlength">The max length for this field is 100.</div>
-          <div ng-message="duplicate">An account with this name already exists.</div>
+          <div ng-message="duplicate">An category with this name already exists.</div>
         </div>
       </md-input-container>
     </div>
@@ -26,9 +26,9 @@
 
   <md-dialog-actions layout="row" class="layout-row">
     <span flex="" class="flex"></span>
-    <button class="md-button md-ink-ripple" type="button" ng-click="vm.create()"
-        ng-disabled="vm.accountForm.$pristine || vm.accountForm.$invalid">
-      Add
+    <button class="md-button md-ink-ripple" type="button" ng-click="vm.edit(category.id)"
+        ng-disabled="vm.categoryForm.$pristine || vm.categoryForm.$invalid">
+      Update
     </button>
   </md-dialog-actions>
 </form>
