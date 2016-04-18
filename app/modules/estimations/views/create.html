@@ -1,4 +1,4 @@
-<form class="ng-pristine ng-valid" name="vm.currencyForm">
+<form class="ng-pristine ng-valid" name="vm.estimationForm">
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Create</h2>
@@ -12,22 +12,57 @@
   <md-dialog-content>
     <div class="md-dialog-content">
       <md-input-container class="md-block">
-        <label>Name</label>
-        <input required name="name" ng-model="vm.currency.name"
-            ng-maxlength="100" ng-change="vm.resetRemoteErrors(vm.currencyForm.name)">
-        <div ng-messages="vm.currencyForm.name.$error">
+        <label>Category</label>
+        <md-select name="category_id" ng-model="vm.estimation.category_id" required>
+          <md-option ng-repeat="category in vm.categories" value="{{ category.id }}">{{ category.name }}</md-option>
+        </md-select>
+        <div ng-messages="vm.estimationForm.category_id.$error">
           <div ng-message="required">This is required.</div>
-          <div ng-message="maxlength">The max length for this field is 100.</div>
-          <div ng-message="duplicate">A currency with this name already exists.</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block">
-        <label>Exchange Rate</label>
-        <input type="number" required name="exchange_rate" ng-model="vm.currency.exchange_rate"
-            ng-change="vm.resetRemoteErrors(vm.currencyForm.exchange_rate)">
-        <div ng-messages="vm.currencyForm.exchange_rate.$error">
+        <label>Amount</label>
+        <input type="number" required name="amount" ng-model="vm.estimation.amount">
+        <div ng-messages="vm.estimationForm.amount.$error">
           <div ng-message="required">This is required.</div>
           <div ng-message="number">This must be a number.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Currency</label>
+        <md-select name="currency_id" ng-model="vm.estimation.currency_id" required>
+          <md-option ng-repeat="currency in vm.currencies" value="{{ currency.id }}">{{ currency.name }}</md-option>
+        </md-select>
+        <div ng-messages="vm.estimationForm.currency_id.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <div layout="column" flex>
+        <label class="md-caption" ng-show="vm.estimationForm.start_date.$viewValue">Start date</label>
+        <md-datepicker name="start_date" ng-model="vm.estimation.start_date"
+            md-placeholder="Start date" required></md-datepicker>
+        <div class="date-error" ng-messages="vm.estimationForm.start_date.$error"
+            ng-show="vm.estimationForm.start_date.$dirty">
+          <div ng-message="valid">The entered value is not a date.</div>
+          <div ng-message="required">This is required.</div>
+        </div>
+      </div>
+      <div layout="column" flex>
+        <label class="md-caption" ng-show="vm.estimationForm.end_date.$viewValue">End date</label>
+        <md-datepicker name="end_date" ng-model="vm.estimation.end_date"
+            md-placeholder="End date"></md-datepicker>
+        <div ng-messages="vm.estimationForm.end_date.$error" ng-show="vm.estimationForm.end_date.$dirty">
+          <div ng-message="valid">The entered value is not a date.</div>
+        </div>
+      </div>
+      <md-input-container class="md-block">
+        <label>Day</label>
+        <input type="number" required name="day" ng-model="vm.estimation.day" min="1" max="31">
+        <div ng-messages="vm.estimationForm.day.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="number">This must be a number.</div>
+          <div ng-message="min">The minimum is 1.</div>
+          <div ng-message="max">The maximum is 31</div>
         </div>
       </md-input-container>
     </div>
@@ -36,7 +71,7 @@
   <md-dialog-actions layout="row" class="layout-row">
     <span flex="" class="flex"></span>
     <button class="md-button md-ink-ripple" type="button" ng-click="vm.create()"
-        ng-disabled="vm.currencyForm.$pristine || vm.currencyForm.$invalid">
+        ng-disabled="vm.estimationForm.$pristine || vm.estimationForm.$invalid">
       Add
     </button>
   </md-dialog-actions>

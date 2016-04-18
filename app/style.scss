@@ -1,7 +1,7 @@
 .layout-content {
   max-width: 864px;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .md-dialog-content {
@@ -14,4 +14,14 @@ md-icon.fa {
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+
+.date-error {
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  opacity: 1;
+  margin-top: 0;
+  padding-left: 64px;
+  color: rgb(221, 44, 0);
 }

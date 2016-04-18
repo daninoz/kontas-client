@@ -1,4 +1,5 @@
 import angular from 'angular';
+import moment from 'moment';
 import ngRoute from 'angular-route';
 import ngMaterial from 'angular-material';
 import ngMessages from 'angular-messages';
@@ -6,6 +7,7 @@ import accountsModule from './modules/accounts';
 import categoriesModule from './modules/categories';
 import currenciesModule from './modules/currencies';
 import creditCardsModule from './modules/credit-cards';
+import estimationsModule from './modules/estimations';
 import services from './services';
 import helpers from './helpers';
 
@@ -21,20 +23,31 @@ const app = angular.module('kontas', [
   'kontas.currencies',
   'kontas.categories',
   'kontas.creditCards',
+  'kontas.estimations',
   'kontas.services',
   'kontas.helpers'
 ]);
 
 app.config(config);
 
-config.$inject = ['$routeProvider', '$locationProvider'];
-function config($routeProvider, $locationProvider) {
+config.$inject = ['$routeProvider', '$locationProvider', '$mdDateLocaleProvider'];
+function config($routeProvider, $locationProvider, $mdDateLocaleProvider) {
   $routeProvider.otherwise('/accounts');
+
+  $mdDateLocaleProvider.formatDate = function(date) {
+    return date ? moment(date).format('DD/MM/YYYY') : '';
+  };
+
+  $mdDateLocaleProvider.parseDate = function(dateString) {
+    var m = moment(dateString, 'DD/MM/YYYY', true);
+    return m.isValid() ? m.toDate() : new Date(NaN);
+  };
 };
 
 accountsModule(angular);
 currenciesModule(angular);
 categoriesModule(angular);
 creditCardsModule(angular);
+estimationsModule(angular);
 services(angular);
 helpers(angular);

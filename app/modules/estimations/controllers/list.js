@@ -1,8 +1,8 @@
 export default ngModule => {
-  ngModule.controller('CurrenciesListController', CurrenciesListController);
+  ngModule.controller('EstimationsListController', EstimationsListController);
 
-  CurrenciesListController.$inject = ['$mdDialog', '$mdMedia', 'CurrenciesService']
-  function CurrenciesListController($mdDialog, $mdMedia, CurrenciesService) {
+  EstimationsListController.$inject = ['$mdDialog', '$mdMedia', 'EstimationsService']
+  function EstimationsListController($mdDialog, $mdMedia, EstimationsService) {
 
     var vm = this;
 
@@ -13,15 +13,15 @@ export default ngModule => {
     getList();
 
     function getList() {
-      CurrenciesService.getIndex().then(function (response) {
-        vm.currencies = response;
+      EstimationsService.getIndex().then(function (response) {
+        vm.estimations = response;
       });
     }
 
     function create(ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && vm.customFullscreen;
       $mdDialog.show({
-        controller: 'CurrenciesCreateController',
+        controller: 'EstimationsCreateController',
         controllerAs: 'vm',
         template: require('../views/create.html'),
         parent: angular.element(document.body),
@@ -36,7 +36,7 @@ export default ngModule => {
     function edit(id, ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
       $mdDialog.show({
-        controller: 'CurrenciesEditController',
+        controller: 'EstimationsEditController',
         controllerAs: 'vm',
         template: require('../views/edit.html'),
         parent: angular.element(document.body),
@@ -52,7 +52,7 @@ export default ngModule => {
     }
 
     function remove(id) {
-      CurrenciesService.remove(id).then(() => {
+      EstimationsService.remove(id).then(() => {
         getList();
       });
     }

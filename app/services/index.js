@@ -2,6 +2,7 @@ import accountsService from './accounts';
 import currenciesService from './currencies';
 import categoriesService from './categories';
 import creditCardsService from './credit-cards';
+import estimationsService from './estimations';
 
 export default angular => {
 
@@ -11,5 +12,6 @@ export default angular => {
   currenciesService(ngModule);
   categoriesService(ngModule);
   creditCardsService(ngModule);
+  estimationsService(ngModule);
 
 };

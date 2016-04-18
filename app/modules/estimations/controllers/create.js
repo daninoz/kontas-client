@@ -1,21 +1,28 @@
 export default ngModule => {
-  ngModule.controller('CurrenciesCreateController', CurrenciesCreateController);
+  ngModule.controller('EstimationsCreateController', EstimationsCreateController);
 
-  CurrenciesCreateController.$inject = ['$mdDialog', 'CurrenciesService', 'FormHelper']
-  function CurrenciesCreateController($mdDialog, CurrenciesService, FormHelper) {
+  EstimationsCreateController.$inject = ['$mdDialog', 'EstimationsService', 'CategoriesService', 'CurrenciesService']
+  function EstimationsCreateController($mdDialog, EstimationsService, CategoriesService, CurrenciesService) {
     var vm = this;
 
-    vm.currency = {};
+    vm.estimation = {};
     vm.create = create;
     vm.cancel = cancel;
+    
+    init();
 
-    FormHelper.setRemoteErrorsResetter(vm, ['duplicate']);
+    function init() {
+      CategoriesService.getIndex().then(function (response) {
+        vm.categories = response;
+      });
+      CurrenciesService.getIndex().then(function (response) {
+        vm.currencies = response;
+      });
+    }
 
     function create() {
-      CurrenciesService.create(vm.currency).then(() => {
+      EstimationsService.create(vm.estimation).then(() => {
         $mdDialog.hide();
-      }, () => {
-        vm.currencyForm.name.$setValidity('duplicate', false);
       });
     }
 

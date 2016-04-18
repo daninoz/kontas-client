@@ -4,12 +4,12 @@ import editController from './controllers/edit';
 
 export default angular => {
 
-  var ngModule = angular.module('kontas.currencies', []);
+  var ngModule = angular.module('kontas.estimations', []);
 
   ngModule.config($routeProvider => {
       $routeProvider
-          .when('/currencies', {
-            controller: 'CurrenciesListController',
+          .when('/estimations', {
+            controller: 'EstimationsListController',
             controllerAs: 'vm',
             template: require('./views/list.html'),
           });
